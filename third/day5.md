@@ -34,7 +34,7 @@ url(r'^app/', include('app.urls',namespace='dy')),
 ## 用户注册、登录和注销功能的实现
 >用户注册实现步骤：
 1. 在项目的urls.py中创建应用路由：
-```url(r'^user/', include('user.urls', namespace='user')),```
+   ```url(r'^user/', include('user.urls', namespace='user')),```
 2. 在应用目录下的urls.py中创建路由：
 ``` 
 # 注册
@@ -239,7 +239,7 @@ def logout(request):
 
 ```
 3. 由于在上述两个方法中都需要对cookie值进行查询和判断，因此可以将该方法闭包，生成一个装饰器，避免重复代码；
-在项目中新建一个‘utls’python工具包，用于存放公共方法；
+   在项目中新建一个‘utls’python工具包，用于存放公共方法；
 
 functions.py
 ```
@@ -269,7 +269,8 @@ def login_required(func):
         return func(request)
 
     return check_login
-
 ```
 
+结果：
 
+![结果](C:\Users\Administrator\Downloads\login.gif)
