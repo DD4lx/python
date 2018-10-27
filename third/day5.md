@@ -273,4 +273,4 @@ def login_required(func):
 
 结果：
 
-![结果](C:\Users\Administrator\Downloads\login.gif)
+![结果](./imgs/login.gif)
