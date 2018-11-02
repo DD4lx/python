@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+博客管理系统
+{% endblock %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'backweb/css/font-awesome.min.css' %}">
+<link rel="apple-touch-icon-precomposed" href="{% static 'backweb/images/icon/icon.png' %}">
+<link rel="shortcut icon" href="{% static 'backweb/images/icon/favicon.ico' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block js %}
+{% load static %}
+<script src="{% static 'backweb/js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'backweb/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'backweb/js/admin-scripts.js' %}"></script>
+{% endblock %}

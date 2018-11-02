@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+博客管理系统
+{% endblock %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'backweb/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'backweb/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'backweb/css/login.css' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'backweb/images/icon/icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'backweb/images/icon/favicon.ico' %}">
+
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<div class="container">
+  <div class="siteIcon"><img src="{% static 'backweb/images/icon/icon.png' %}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用博客管理系统" draggable="false" /></div>
+  <form action="index.html" method="post" autocomplete="off" class="form-signin">
+    <h2 class="form-signin-heading">管理员注册</h2>
+    <label for="userName" class="sr-only">用户名</label>
+    <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+    <label for="userPwd" class="sr-only">密码</label>
+    <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+        <label for="userPwd" class="sr-only">确认密码</label>
+    <input type="password" id="userPwd2" name="userpwd2" class="form-control" placeholder="请再次输入密码" required autocomplete="off" maxlength="18">
+   <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">注册</button></a>
+  </form>
+  <div class="footer">
+    <p><a href="{% url 'backweb:login' %}" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">去登录 →</a></p>
+  </div>
+</div>
+{{ errors }}
+{% endblock %}
+
+
+{% block js %}
+{% load static %}
+<script src="{% static 'backweb/js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'backweb/js/bootstrap.min.js' %}"></script>
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+window.oncontextmenu = function(){
+	//return false;
+};
+$('.siteIcon img').click(function(){
+	window.location.reload();
+});
+$('#signinSubmit').click(function(){
+	if($('#userName').val() === ''){
+		$(this).text('用户名不能为空');
+	}else if($('#userPwd').val() === ''){
+		$(this).text('密码不能为空');
+	}else{
+		$(this).text('请稍后...');
+	}
+});
+</script>
+
+{% endblock %}
