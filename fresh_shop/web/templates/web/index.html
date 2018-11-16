@@ -1,0 +1,74 @@
+
+{% extends 'base_main.html' %}
+
+{% block content %}
+
+<div class="navbar_con">
+	<div class="navbar">
+		<h1 class="fl">全部商品分类</h1>
+		<ul class="navlist fl">
+			<li><a href="">首页</a></li>
+			<li class="interval">|</li>
+			<li><a href="">手机生鲜</a></li>
+			<li class="interval">|</li>
+			<li><a href="">抽奖</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="center_con clearfix">
+	<ul class="subnav fl">
+		<li><a href="#model01" class="fruit">新鲜水果</a></li>
+		<li><a href="#model02" class="seafood">海鲜水产</a></li>
+		<li><a href="#model03" class="meet">猪牛羊肉</a></li>
+		<li><a href="#model04" class="egg">禽类蛋品</a></li>
+		<li><a href="#model05" class="vegetables">新鲜蔬菜</a></li>
+		<li><a href="#model06" class="ice">速冻食品</a></li>
+	</ul>
+	<div class="slide fl">
+		{% load static %}
+		<ul class="slide_pics">
+			<li><img src="{% static 'web/images/slide.jpg' %}" alt="幻灯片"></li>
+			<li><img src="{% static 'web/images/slide02.jpg' %}" alt="幻灯片"></li>
+			<li><img src="{% static 'web/images/slide03.jpg' %}" alt="幻灯片"></li>
+			<li><img src="{% static 'web/images/slide04.jpg' %}" alt="幻灯片"></li>
+		</ul>
+		<div class="prev"></div>
+		<div class="next"></div>
+		<ul class="points"></ul>
+	</div>
+	<div class="adv fl">
+		{% load static %}
+		<a href="#"><img src="{% static 'web/images/adv01.jpg' %}"></a>
+		<a href="#"><img src="{% static 'web/images/adv02.jpg' %}"></a>
+	</div>
+</div>
+{% for key,value in good_type.items %}
+{% load static %}
+<div class="list_model">
+	<div class="list_title clearfix">
+		<h3 class="fl" id="model0{{ value.0.category_id }}">{{ key }}</h3>
+
+		<a href="{% url 'goods:list' value.0.category_id %}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+	</div>
+
+	<div class="goods_con clearfix">
+		<div class="goods_banner fl"><img src="/media/{{ value.0.category.category_front_image }}"></div>
+		<ul class="goods_list fl">
+
+			{% for good in value %}
+				<li>
+					<h4><a href="{% url 'goods:detail' good.id %}">{{ good.name }}</a></h4>
+					<a href="{% url 'goods:detail' good.id %}"><img src="/media/{{ good.goods_front_image }}/"></a>
+					<div class="prize">¥{{ good.shop_price }}</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+

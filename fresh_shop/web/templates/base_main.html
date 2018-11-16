@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block css %}
+	{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'web/css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'web/css/main.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到天天生鲜!</div>
+        <div class="fr">
+            {% if user.id %}
+                <div class="login_info fl" style="display:block;">
+                    欢迎您：<em>{{ user.username }}</em>
+                    <span>|</span>
+                    <a href="{% url 'user:logout' %}">退出</a>
+                </div>
+            {% else %}
+                <div class="login_btn fl">
+
+                    <a href="{% url 'user:login' %}">登录</a>
+                    <span>|</span>
+                    <a href="{% url 'user:register' %}">注册</a>
+
+                </div>
+            {% endif %}
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="{% url 'user:user_center_info' %}">用户中心</a>
+                <span>|</span>
+                <a href="{% url 'cart:cart' %}">我的购物车</a>
+                <span>|</span>
+                <a href="">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block search %}
+<div class="search_bar clearfix">
+    {% load static %}
+    <a href="{% url 'goods:index' %}" class="logo fl"><img src="{% static 'web/images/logo.png' %}"></a>
+    <div class="search_con fl">
+        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
+        <input type="button" class="input_btn fr" name="" value="搜索">
+    </div>
+    <div class="guest_cart fr">
+        <a href="{% url 'cart:cart' %}" class="cart_name fl">我的购物车</a>
+        <div class="goods_count fl" id="show_count">0</div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $.ajax({
+            url: '/cart/cart_count/',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                if(data.code=='200'){
+                    $('#show_count').html(data.count)
+                }
+            },
+          })
+</script>
+
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-****888    京ICP备*******8号</p>
+</div>
+{% endblock %}
+
+{% block js %}
+{% load static %}
+
+
+<script type="text/javascript" src="{% static 'web/js/jquery-1.12.4.min.js' %}"></script>
+<script type="text/javascript">
+<!--BCSlideshow('focuspic');-->
+var oFruit = document.getElementById('fruit_more');
+var oShownum = document.getElementById('show_count');
+
+var hasorder = localStorage.getItem('order_finish');
+
+if(hasorder)
+{
+    oShownum.innerHTML = '2';
+}
+
+<!--oFruit.onclick = function(){-->
+    <!--window.location.href = 'list.html';-->
+<!--}-->
+
+</script>
+
+{% endblock %}
